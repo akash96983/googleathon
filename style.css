@@ -1,0 +1,101 @@
+/* Resetting default styles and adding your styles */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+body{
+    /* background-image: url("https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&w=600"); */
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: rgb(229, 226, 226);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: smaller;
+}
+a:hover, nav h1:hover{
+    cursor: pointer;
+    color:rgb(62, 62, 62);
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+    background-color:orange;
+    padding: 8px;
+    font-size: smaller;
+    /* border: 0.5px solid black; */
+}
+
+#bg-container{
+    height:90vh;
+    width: 98.9vw;
+    background-image: url('https://img.freepik.com/free-vector/happy-women-learning-language-online-isolated-flat-vector-illustration-cartoon-female-characters-taking-individual-lessons-through-messenger-education-digital-technology-concept_74855-10088.jpg?w=1380&t=st=1700506167~exp=1700506767~hmac=a986857cd042a98614d2b834aa4919bbf9043a1d8e32fb11ddc39d433ae94404');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* border: 0.5px solid black;    */
+}
+
+#bg-container div{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.816) ;
+}
+#title{
+    font-family:'Jacques Francois Shadow';
+    font-size:80px;
+    font-weight: lighter;
+    text-shadow: 2px 2px 5px black;
+    padding-top: 30px ;
+}
+#content p{
+    font-size: larger;
+    width: 80vw;
+    margin: 70px;
+    font-family: 'Inria Serif';
+    line-height: 35px;
+    
+}
+#content img{
+    animation: moving 1s linear infinite;
+    height: 100px;
+}
+#content img:hover{
+    cursor: pointer;
+}
+
+@keyframes moving {
+    0%{
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(30px);
+      }
+}
+#name-input{
+    height: 50px;
+    border-radius: 15px;
+    margin: 100px;
+    width: 300px;
+    text-align: center;
+    font-size: large;
+}
+label{
+    font-size:25px;
+    color: black;
+    padding: 8px;
+}
+.courses[type='checkbox']{
+    transform: scale(1.3);
+}
+
+#input-container{
+    /* border: 2px solid red; */
+    padding-bottom: 100px;
+}

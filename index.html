@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursify</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Jacques Francois Shadow' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Inria Serif' rel='stylesheet'>
+</head>
+<body>
+    <nav>
+        <h1>COURSIFY</h1>
+        <h1><a href="content">HOME</a></h1>
+        <h1><a href="content">ABOUT</a></h1>
+        <h1><a href="content">GET STARTED</a></h1>
+    </nav>
+    <div id="bg-container">
+        <div>
+        <center id="content">
+            <h1 id="title">Coursify</h1>
+            <h2 style="font-family : Inria Serif;">A Genius Quest</h2>
+            <p id="para">"Welcome to Coursify, your personalized gateway to a world of knowledge! Discover tailored course recommendations just for you, empowering your learning journey. Unleash your potential with our curated selection of courses spanning diverse interests and subjects. Whether you're seeking professional development or pursuing a passion, let Coursify guide you towards your learning goals. Explore, learn, and grow with our intuitive platform, designed to fuel your curiosity and expand your horizons."</p>
+          <img id="getStarted" src="https://o.remove.bg/downloads/926b9ee3-8b2e-4df2-a92e-3433471ca6c8/image-removebg-preview.png" alt="">
+        
+        </div>
+    </div>
+    <div id="input-page">
+    <center>
+            <input id="name-input" type="text" placeholder="Enter Your Name">
+            <h1 style="color: black;">Choose the course which are you interested in...</h1>
+            <div style="display:block; text-align: left;width: fit-content; margin: auto;margin: 20px;" id="input-container">
+               <div> <input id="course1" class="courses" type="checkbox" ><label for="course1">Technical</label> </div>
+               <div> <input id="course2" class="courses" type="checkbox" ><label for="course2">Sports</label></div>
+               <div> <input id="course3" class="courses" type="checkbox" ><label for="course3">Arts</label></div>
+               <div> <input id="course4" class="courses" type="checkbox" ><label for="course4">Media $ Journalism</label></div>
+               <div> <input id="course5" class="courses" type="checkbox" ><label for="course5">Game development</label></div>
+               <div> <input id="course6" class="courses" type="checkbox" ><label for="course6">VFX and animation</label></div>
+               <div> <input id="course7" class="courses" type="checkbox" ><label for="course7">Music</label></div>
+               <div> <input id="course8" class="courses" type="checkbox" ><label for="course8">Automobiles</label></div>
+            </div>
+    </center>
+    </div>
+    <script>
+const getStarted=document.getElementById("getStarted").addEventListener('click',()=>{
+document.getElementById("input-page").scrollIntoView({behavior:"smooth"})
+})
+    </script>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
