@@ -1,4 +1,7 @@
 
+let genText;
+let courseList=[]
+
 
 let correctAnswersCount = 0;
 
@@ -70,7 +73,6 @@ document.getElementById("submitbutton").addEventListener('click', () => {
     if (document.getElementById("name-input").value === "" || checkedCount < 1) {
         alert("Enter Valid Details");
     } else {
-        var courseList = [];
         document.querySelectorAll(".courses").forEach(function(checkbox) {
             if (checkbox.checked) {
                 courseList.push(checkbox.name);
@@ -185,14 +187,18 @@ document.getElementById("submitbutton").addEventListener('click', () => {
 //     var overlay = document.getElementById('overlay');
 //     over
 
+
+function fetchAPI(ele){
+
 // Your OpenAI API key
 const apiKey = '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';
 
 // Endpoint URL for the OpenAI API (adjust for the specific endpoint you're using)
-// const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
+const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
 // Example prompt
-const promptText = "what is 2+2";
+
+const promptText = `Recommend some courses related to ${ele} `;
 
 // Data payload for the request
 const requestData = {
@@ -218,12 +224,48 @@ fetch(endpoint, {
 .then(data => {
   // Handle the API response
   console.log("Generated text:", data.choices[0].text);
+   genText= data.choices[0].text;
 })
 .catch(error => {
   console.error('Error:', error);
 });
 
+return genText
+}
+
+
 document.getElementById("checkAnswersBtn").addEventListener('click', () => {
-    let div=document.createElement("div")
-    let h1 = document.createElement("h1")
-    });
+    document.getElementById("popup").style.display = 'inherit';
+
+    let div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.flexDirection='column'
+    div.style.justifyContent = "space-around";
+    div.style.alignItems = "center";
+    div.style.borderRadius = "10px";
+    div.style.width = 'fit-content';
+    div.style.height = '65vh';
+    div.style.border = "2px solid red";
+    div.style.backgroundColor = 'white';
+
+    let h1 = document.createElement("h1");
+    h1.innerHTML = 'RECOMMENDED COURSE';
+
+    let h2 = document.createElement("h2");
+    h2.innerHTML = "Score: " + correctAnswersCount;
+
+    
+
+    let div2 = document.createElement("div");
+    div2.innerHTML = fetchAPI( courseList[0]); 
+    div2.style.border = "2px solid red";
+    div2.style.backgroundColor = 'white';
+
+    div.append(h1,h2,div2);
+
+    document.getElementById("popup").appendChild(div);
+    document.getElementById("popup").style.display='flex';
+    document.getElementById("popup").style.justifyContent='center';
+    document.getElementById("popup").style.alignItems='center';
+
+});
