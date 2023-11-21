@@ -188,58 +188,49 @@ document.getElementById("submitbutton").addEventListener('click', () => {
 //     over
 
 
-function fetchAPI(ele){
+function fetchAPI(ele) {
+    return new Promise((resolve, reject) => {
+        const apiKey = 'YOUR_OPENAI_API_KEY';
+        const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
+        const promptText = `Recommend some courses related to ${ele}`;
 
-// Your OpenAI API key
-const apiKey = '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';
+        const requestData = {
+            prompt: promptText,
+            max_tokens: 50
+        };
 
-// Endpoint URL for the OpenAI API (adjust for the specific endpoint you're using)
-const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
-
-// Example prompt
-
-const promptText = `Recommend some courses related to ${ele} `;
-
-// Data payload for the request
-const requestData = {
-  prompt: promptText,
-  max_tokens: 50 // Adjust the number of tokens you want in the completion
-};
-
-// Fetch API request
-fetch(endpoint, {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(requestData)
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-  return response.json();
-})
-.then(data => {
-  // Handle the API response
-  console.log("Generated text:", data.choices[0].text);
-   genText= data.choices[0].text;
-})
-.catch(error => {
-  console.error('Error:', error);
-});
-
-return genText
+        fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const genText = data.choices[0].text;
+            resolve(genText); // Resolve the Promise with the generated text
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            reject(error); // Reject the Promise with the error
+        });
+    });
 }
 
 
-document.getElementById("checkAnswersBtn").addEventListener('click', () => {
+document.getElementById("checkAnswersBtn").addEventListener('click', async () => {
     document.getElementById("popup").style.display = 'inherit';
 
     let div = document.createElement("div");
     div.style.display = "flex";
-    div.style.flexDirection='column'
+    div.style.flexDirection = 'column';
     div.style.justifyContent = "space-around";
     div.style.alignItems = "center";
     div.style.borderRadius = "10px";
@@ -249,23 +240,27 @@ document.getElementById("checkAnswersBtn").addEventListener('click', () => {
     div.style.backgroundColor = 'white';
 
     let h1 = document.createElement("h1");
-    h1.innerHTML = 'RECOMMENDED COURSE';
+    h1.innerHTML = `RECOMMENDED COURSE <i class="fa fa-window-close" aria-hidden="true" style="margin-left:50px"></i>`;
 
     let h2 = document.createElement("h2");
     h2.innerHTML = "Score: " + correctAnswersCount;
 
-    
-
     let div2 = document.createElement("div");
-    div2.innerHTML = fetchAPI( courseList[0]); 
+
+    try {
+        const genText = await fetchAPI(courseList[0]);
+        div2.innerHTML = genText;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        div2.innerHTML = 'Error fetching data'; // Display an error message
+    }
+
     div2.style.border = "2px solid red";
     div2.style.backgroundColor = 'white';
 
-    div.append(h1,h2,div2);
-
+    div.append(h1, h2, div2);
     document.getElementById("popup").appendChild(div);
-    document.getElementById("popup").style.display='flex';
-    document.getElementById("popup").style.justifyContent='center';
-    document.getElementById("popup").style.alignItems='center';
-
+    document.getElementById("popup").style.display = 'flex';
+    document.getElementById("popup").style.justifyContent = 'center';
+    document.getElementById("popup").style.alignItems = 'center';
 });
