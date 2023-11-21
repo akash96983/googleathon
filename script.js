@@ -190,7 +190,7 @@ document.getElementById("submitbutton").addEventListener('click', () => {
 
 function fetchAPI(ele) {
     return new Promise((resolve, reject) => {
-        const apiKey = 'YOUR_OPENAI_API_KEY';
+        const apiKey = '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';
         const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
         const promptText = `Recommend some courses related to ${ele}`;
 
@@ -240,7 +240,8 @@ document.getElementById("checkAnswersBtn").addEventListener('click', async () =>
     div.style.backgroundColor = 'white';
 
     let h1 = document.createElement("h1");
-    h1.innerHTML = `RECOMMENDED COURSE <i class="fa fa-window-close" aria-hidden="true" style="margin-left:50px"></i>`;
+    h1.innerHTML = `RECOMMENDED COURSE <i class="fa fa-window-close" aria-hidden="true" style="margin-left:50px" onClick='document.getElementById("popup").style.display="none"'></i>`;
+
 
     let h2 = document.createElement("h2");
     h2.innerHTML = "Score: " + correctAnswersCount;
